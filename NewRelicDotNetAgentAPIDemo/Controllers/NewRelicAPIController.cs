@@ -136,9 +136,22 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             return "SetTransactionName";
         }
 
-       
+        ///IgnoreTransaction Method
+        ///Ignore the transaction that is currently in process
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/IgnoreTransaction
+        /// Can be found in New Relic via: You will not see this trnasaction - hense the name...
+        [HttpGetAttribute]
+        public string IgnoreTransaction()
+        {
+            this.DelayTransaction(5000);
+
+            NewRelic.Api.Agent.NewRelic.IgnoreTransaction();
+
+            return "IgnoreTransaction";
+        }
 
         //GetBrowserTimingHeader - see views/shared/_Layout.cshtml
+
 
         //GetBrowserTimingFooter - see views/shared/_Layout.cshtml 
 
