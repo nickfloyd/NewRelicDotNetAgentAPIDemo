@@ -21,14 +21,14 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         /// </summary>
         /// <returns></returns>
         /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/RecordMetric
-        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/applications/[appid]/transactions
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
         [HttpGetAttribute]
         public string RecordMetric() {
             DateTime start = DateTime.Now; 
             this.DelayTransaction(5000);
             TimeSpan ts = DateTime.Now.Subtract(start);
 
-            NewRelic.Api.Agent.NewRelic.RecordMetric("WebTransaction/DEMO_Record_Metric", ts.Milliseconds);
+            NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/DEMO_Record_Metric", ts.Milliseconds);
 
             return "RecordMetric";
         }
@@ -37,12 +37,10 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         ///Record a response time in milliseconds for the given metric name.
 
         ///Parameters
-        ///name
-        ///The name of the response time metric to record. Only the first 1000 characters are retained.
-        ///millis
-        ///The response time to record in milliseconds.
+        ///name : The name of the response time metric to record. Only the first 1000 characters are retained.
+        ///millis : The response time to record in milliseconds.
         /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/RecordResponseTimeMetric
-        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/applications/[appid]/transactions
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
         [HttpGetAttribute]
         public string RecordResponseTimeMetric()
         {
@@ -50,11 +48,30 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             this.DelayTransaction(5000);
             TimeSpan ts = DateTime.Now.Subtract(start);
 
-            NewRelic.Api.Agent.NewRelic.RecordResponseTimeMetric("WebTransaction/DEMO_Record_Response_Time_Metric", ts.Milliseconds);
+            NewRelic.Api.Agent.NewRelic.RecordResponseTimeMetric("Custom/DEMO_Record_Response_Time_Metric", ts.Milliseconds);
 
             return "RecordResponseTimeMetric";
         }
 
+        ///IncrementCounter(System.String) Method
+        ///Increment the metric counter for the given name.
+
+        ///Parameters
+        ///name : The name of the metric to increment. Only the first 1000 characters are retained.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/RecordResponseTimeMetric
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
+        [HttpGetAttribute]
+        public string IncrementCounter()
+        {
+            this.RecordResponseTimeMetric();
+
+            for (int i = 0; i < 10; i++)
+            {
+                NewRelic.Api.Agent.NewRelic.IncrementCounter("Custom/DEMO_Record_Response_Time_Metric");
+            }
+
+            return "IncrementCounter";
+        }
 
         //// GET api/newrelicapi
         //public IEnumerable<string> Get()
