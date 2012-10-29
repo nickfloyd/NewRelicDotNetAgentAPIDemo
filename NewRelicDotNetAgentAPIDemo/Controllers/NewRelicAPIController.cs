@@ -150,10 +150,40 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             return "IgnoreTransaction";
         }
 
+        //IgnoreApdex Method
+        //Ignore the current transaction in the apdex computation.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/IgnoreApdex
+        /// Normally apdx would drop if a method took 20 seconds to execute - this one will be ignored
+        [HttpGetAttribute]
+        public string IgnoreApdex()
+        {
+            this.DelayTransaction(20000);
+
+            NewRelic.Api.Agent.NewRelic.IgnoreApdex();
+
+            return "IgnoreApdex";
+        }
+
         //GetBrowserTimingHeader - see views/shared/_Layout.cshtml
 
 
         //GetBrowserTimingFooter - see views/shared/_Layout.cshtml 
+
+        ///SetUserParameters(System.String,System.String,System.String) Method
+        ///Sets the User Name, Account Name and Product Name to associate with the RUM JavaScript footer for the current web transaction.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/SetUserParameters
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/Aplications/[Appid]/traced_errors
+        /// 
+        ///NOTE: THIS METHOD WILL NOT WORK HERE AS IMPLEMENTED - this is a part of Real User Monitoring (which requires a view to render javascript - see the home controller for an example)
+        [HttpGetAttribute]
+        public string SetUserParameters()
+        {
+            this.DelayTransaction(5000);
+
+            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick","SomeUserHandle","NewRelicEcomSite");
+
+            return "SetUserParameters";
+        }
 
 
         private void DelayTransaction(Int16 mills) {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +12,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Using the New Relic Agent API";
+            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick", "SomeUserHandle", "NewRelicEcomSite");
 
             return View();
         }
@@ -18,14 +20,17 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
+            Thread.Sleep(5000);
 
+            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick", "SomeUserHandle", "NewRelicEcomSite");
+            
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick", "SomeUserHandle", "NewRelicEcomSite");
             return View();
         }
     }

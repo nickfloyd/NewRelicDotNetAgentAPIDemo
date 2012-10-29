@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension xmlns="urn:newrelic-extension">
+    <instrumentation>
+        <tracerFactory metricName="API/Metrics">
+            <match assemblyName="NewRelicDotNetAgentAPIDemo" className="NewRelicDotNetAgentAPIDemo.Controllers.NewRelicAPIController">
+                <exactMethodMatcher methodName="RecordMetric" parameters="void" />
+                <exactMethodMatcher methodName="RecordResponseTimeMetric" parameters="void" />
+                <exactMethodMatcher methodName="IncrementCounter" parameters="void" />
+                <exactMethodMatcher methodName="NoticeError" parameters="void" />
+                <exactMethodMatcher methodName="AddCustomParameter" parameters="void" />
+                <exactMethodMatcher methodName="SetTransactionName" parameters="void" />
+                <exactMethodMatcher methodName="IgnoreTransaction" parameters="void" />
+                <exactMethodMatcher methodName="IgnoreApdex" parameters="void" />
+                <exactMethodMatcher methodName="SetUserParameters" parameters="void" />
+            </match>
+        </tracerFactory>
+    </instrumentation>
+</extension>
