@@ -107,7 +107,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         ///key : The key name to add to the transaction parameters. Only the first 1000 characters are retained.
         ///value : The value to add to the current transaction.
         /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/AddCustomParameter
-        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/transactions/[transactionid] >> in the custom parameters section
         [HttpGetAttribute]
         public string AddCustomParameter()
         {
@@ -117,6 +117,31 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
 
             return "AddCustomParameter";
         }
+
+        ///SetTransactionName(System.String,System.String) Method
+        ///Set the name of the current transaction.
+
+        ///Parameters
+        ///category : The category of this transaction, used to distinguish different types of transactions. Defaults to Custom. Only the first 1000 characters are retained.
+        ///name : The name of the transaction starting with a forward slash. example: /store/order Only the first 1000 characters are retained.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/SetTransactionName
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/transactions/[transactionid]
+        [HttpGetAttribute]
+        public string SetTransactionName()
+        {
+            this.DelayTransaction(5000);
+
+            NewRelic.Api.Agent.NewRelic.SetTransactionName("Custom", "DEMO_TRANSACTION_NAME");
+
+            return "SetTransactionName";
+        }
+
+       
+
+        //GetBrowserTimingHeader - see views/shared/_Layout.cshtml
+
+        //GetBrowserTimingFooter - see views/shared/_Layout.cshtml 
+
 
         private void DelayTransaction(Int16 mills) {
             Thread.Sleep(mills);
