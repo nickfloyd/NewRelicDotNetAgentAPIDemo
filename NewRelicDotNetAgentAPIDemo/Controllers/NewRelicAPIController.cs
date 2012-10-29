@@ -58,50 +58,69 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
 
         ///Parameters
         ///name : The name of the metric to increment. Only the first 1000 characters are retained.
-        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/RecordResponseTimeMetric
-        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/IncrementCounter
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/Aplications/[Appid]/transactions
         [HttpGetAttribute]
         public string IncrementCounter()
         {
-            this.RecordResponseTimeMetric();
-
+            NewRelic.Api.Agent.NewRelic.SetTransactionName("Custom", "IncrementCounter");
+            this.DelayTransaction(5000);
+            
             for (int i = 0; i < 10; i++)
             {
-                NewRelic.Api.Agent.NewRelic.IncrementCounter("Custom/DEMO_Record_Response_Time_Metric");
+                NewRelic.Api.Agent.NewRelic.IncrementCounter("IncrementCounter");
             }
 
             return "IncrementCounter";
         }
 
-        //// GET api/newrelicapi
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        ///NoticeError(System.Exception) Method
+        ///Notice an error identified by an exception and report it to the New Relic service. 
+        ///If this method is called within a transaction, the exception will be reported with the transaction when it finishes. 
+        ///If it is invoked outside of a transaction, a traced error will be created and reported to the New Relic service. 
+        ///Only the exception/parameter pair for the first call to NoticeError during the course of a transaction is retained.
 
-        //// GET api/newrelicapi/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        ///Parameters
+        ///exception : The exception to be reported. Only part of the exception's information may be retained to prevent the report from being too large.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/NoticeError
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/Aplications/[Appid]/traced_errors
+        [HttpGetAttribute]
+        public string NoticeError()
+        {
+            try
+            {
+                var ImNotABool = "43";
+                bool.Parse(ImNotABool);
+            }
+            catch (Exception ex)
+            {
+                NewRelic.Api.Agent.NewRelic.NoticeError(ex);
+            }
 
-        //// POST api/newrelicapi
-        //public void Post([FromBody]string value)
-        //{
-        //}
+            return "NoticeError";
+        }
 
-        //// PUT api/newrelicapi/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        ///AddCustomParameter(System.String,System.String) Method
+        ///Add a key/value pair to the current transaction. These are reported in errors and transaction traces.
 
-        //// DELETE api/newrelicapi/5
-        //public void Delete(int id)
-        //{
-        //}
+        ///Parameters
+        ///key : The key name to add to the transaction parameters. Only the first 1000 characters are retained.
+        ///value : The value to add to the current transaction.
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/AddCustomParameter
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
+        [HttpGetAttribute]
+        public string AddCustomParameter()
+        {
+            this.DelayTransaction(5000);
+            
+            NewRelic.Api.Agent.NewRelic.AddCustomParameter("Custom/DEMO_PARAMETER_ORDER_NUMBER","123456");
+
+            return "AddCustomParameter";
+        }
 
         private void DelayTransaction(Int16 mills) {
             Thread.Sleep(mills);
         }
+
     }
 }
