@@ -1,6 +1,20 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-bin
-obj
+[Bb]in
+[Bb]in/
+[Dd]ebug*/
+[Oo]bj/
+[Rr]elease*/
+[Tt]est[Rr]esult*
 
-# mstest test results
+#user files
+*.suo
+*.user
+*.vspscc
+*.vsmdi
+
+#tests 
 TestResults
+*ncrunch*
+
+# exclude nuget packages - solution uses package restore (see readme)
+packages/
