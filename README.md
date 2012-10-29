@@ -9,18 +9,19 @@ The New Relic .net API docs are available [here](https://newrelic.com/docs/dotne
 Requirements
 ----------------
 
-Visual Studio 2012
-.net 4.5
-ASP .net MVC 4
-Nuget 2.x
+*  Visual Studio 2012
+*  .net 4.5
+*  ASP .net MVC 4
+*  Nuget 2.x
 
 
 Setup
 ----------------
 
-*  Open the solution
-*  Add virtual directory via Project Properties >> Web >> Create Virtual Directory (or you can alternatively use IIS express)
-*  Run or deploy the project on / to a server with the [NewRelic .net Agent Installed](https://download.newrelic.com/dot_net_agent/release/)
+1. Open the solution
+2. Add virtual directory via Project Properties >> Web >> Create Virtual Directory (or you can alternatively use IIS express)
+3. Run or deploy the project on / to a server with the [NewRelic .net Agent Installed](https://download.newrelic.com/dot_net_agent/release/)
+4. If local the resulting endpoint will be: http://localhost/NewRelicDotNetAgentAPIDemo
 
 Note:  Package restore is enabled on this solution, so when you build the project will attempt to download missing packages.
 To enable package restore:
