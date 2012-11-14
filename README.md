@@ -9,8 +9,8 @@ The New Relic .net API docs are available [here](https://newrelic.com/docs/dotne
 Requirements
 ----------------
 
-*  Visual Studio 2012
-*  .net 4.5
+*  Visual Studio 2010
+*  .net 4.0
 *  ASP .net MVC 4
 *  Nuget 2.x
 
