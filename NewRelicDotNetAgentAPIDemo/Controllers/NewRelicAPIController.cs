@@ -100,6 +100,40 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             return "NoticeError";
         }
 
+        ///NoticeError(System.Exception, Dictionary) Method
+        ///Notice an error identified by an exception and report it to the New Relic service. 
+        ///If this method is called within a transaction, the exception will be reported with the transaction when it finishes. 
+        ///If it is invoked outside of a transaction, a traced error will be created and reported to the New Relic service. 
+        ///Only the exception/parameter pair for the first call to NoticeError during the course of a transaction is retained.
+
+        ///Parameters
+        ///exception : The exception to be reported. Only part of the exception's information may be retained to prevent the report from being too large.
+        ///Dictionary : Will add data to each error that can be found on the page displaying the error under the custom parameters
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/NoticeErrorWithDictiornay
+        /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/Aplications/[Appid]/traced_errors
+        [HttpGetAttribute]
+        public string NoticeErrorWithDictionary()
+        {
+            try
+            {
+                var ImNotABool = "43";
+                bool.Parse(ImNotABool);
+            }
+            catch (Exception ex)
+            {
+                var quotes = new Dictionary<string,string>();
+                quotes.Add("1", "They had a large chunk of the garbage file? How much do they know?");
+                quotes.Add("2", "I'll hack the Gibson.");
+                quotes.Add("3", "Zero Cool? Crashed fifteen hundred and seven systems in one day?");
+                quotes.Add("4", "Turn on your laptop. Set it to receive a file.");
+                quotes.Add("5", "Listen you guys, help yourself to anything in the fridge. Cereal has.");
+
+                NewRelic.Api.Agent.NewRelic.NoticeError(ex, quotes);
+            }
+
+            return "NoticeError";
+        }
+
         ///AddCustomParameter(System.String,System.String) Method
         ///Add a key/value pair to the current transaction. These are reported in errors and transaction traces.
 
