@@ -109,7 +109,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         ///Parameters
         ///exception : The exception to be reported. Only part of the exception's information may be retained to prevent the report from being too large.
         ///Dictionary : Will add data to each error that can be found on the page displaying the error under the custom parameters
-        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/NoticeErrorWithDictiornay
+        /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/NoticeErrorWithDictionary
         /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/Aplications/[Appid]/traced_errors
         [HttpGetAttribute]
         public string NoticeErrorWithDictionary()
