@@ -14,6 +14,8 @@ Requirements
 *  ASP .net MVC 4
 *  Nuget 2.x
 
+Note: If you are using Visual Studio 2010 you can do the following after cloning:  
+git checkout v2010
 
 Setup
 ----------------
