@@ -22,7 +22,7 @@ namespace NewRelicDotNetAgentAPIDemo.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            Assert.AreEqual("Using the New Relic Agent API", result.ViewBag.Message);
         }
 
         [TestMethod]
