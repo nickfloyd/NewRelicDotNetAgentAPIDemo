@@ -219,6 +219,39 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             return "SetUserParameters";
         }
 
+        ///GetBrowserTimingHeader() Method
+        ///Gets the javascript to be used in the view for measuring real user performace
+        ///NOTE: THIS METHOD WILL NOT WORK HERE AS IMPLEMENTED - this is a part of Real User Monitoring (which requires a view to render javascript - see the shared/_Layout.cshtml  for an example)
+        [HttpGetAttribute]
+        public string GetBrowserTimingHeader()
+        {
+            var header = NewRelic.Api.Agent.NewRelic.GetBrowserTimingHeader();
+
+            return header;
+        }
+
+        ///GetBrowserTimingFooter() Method
+        ///Gets the javascript to be used in the view for measuring real user performace
+        ///NOTE: THIS METHOD WILL NOT WORK HERE AS IMPLEMENTED - this is a part of Real User Monitoring (which requires a view to render javascript - see the shared/_Layout.cshtml  for an example)
+        [HttpGetAttribute]
+        public string GetBrowserTimingFooter()
+        {
+            var footer = NewRelic.Api.Agent.NewRelic.GetBrowserTimingFooter();
+
+            return footer;
+        }
+
+        ///DisableBrowserMonitoring() Method
+        ///Gets the javascript to be used in the view for measuring real user performace
+        ///NOTE: THIS METHOD WILL NOT WORK HERE AS IMPLEMENTED - this is a part of Real User Monitoring (which requires a view to render javascript - see the Views/Home/Index.cshtml  for an example)
+        ///NOTE: Works only with agent versions >= 2.5.x
+        [HttpGetAttribute]
+        public string DisableBrowserMonitoring()
+        {
+            NewRelic.Api.Agent.NewRelic.DisableBrowserMonitoring();
+
+            return "DisableBrowserMonitoring";
+        }
 
         private void DelayTransaction(Int16 mills) {
             Thread.Sleep(mills);
