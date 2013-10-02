@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,12 +24,13 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         /// http://localhost/NewRelicDotNetAgentAPIDemo/Api/NewRelicAPI/RecordMetric
         /// Can be found in New Relic via: https://rpm.newrelic.com/accounts/[accountid]/custom_dashboards
         [HttpGetAttribute]
-        public string RecordMetric() {
-            DateTime start = DateTime.Now; 
+        public string RecordMetric()
+        {
+            // Converting DateTime.Now calls to Stopwatch which is more appropriate for measuring performance times
+            var timer = Stopwatch.StartNew();         
             this.DelayTransaction(5000);
-            TimeSpan ts = DateTime.Now.Subtract(start);
-
-            NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/DEMO_Record_Metric", ts.Milliseconds);
+            timer.Stop();
+            NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/DEMO_Record_Metric", timer.Elapsed.Milliseconds);
 
             return "RecordMetric";
         }
@@ -44,11 +46,12 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string RecordResponseTimeMetric()
         {
-            DateTime start = DateTime.Now;
+            // Converting DateTime.Now calls to Stopwatch which is more appropriate for measuring performance times
+            var timer = Stopwatch.StartNew();
             this.DelayTransaction(5000);
-            TimeSpan ts = DateTime.Now.Subtract(start);
+            timer.Stop();
 
-            NewRelic.Api.Agent.NewRelic.RecordResponseTimeMetric("Custom/DEMO_Record_Response_Time_Metric", ts.Milliseconds);
+            NewRelic.Api.Agent.NewRelic.RecordResponseTimeMetric("Custom/DEMO_Record_Response_Time_Metric", timer.Elapsed.Milliseconds);
 
             return "RecordResponseTimeMetric";
         }
