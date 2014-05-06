@@ -11,10 +11,11 @@
 *.user
 *.vspscc
 *.vsmdi
+*.jmconfig
 
 #tests 
 TestResults
 *ncrunch*
 
 # exclude nuget packages - solution uses package restore (see readme)
-packages/
+packages

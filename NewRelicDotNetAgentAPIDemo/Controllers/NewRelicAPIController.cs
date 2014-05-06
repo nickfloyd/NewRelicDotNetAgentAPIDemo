@@ -237,6 +237,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         ///Gets the javascript to be used in the view for measuring real user performace
         ///NOTE: THIS METHOD WILL NOT WORK HERE AS IMPLEMENTED - this is a part of Real User Monitoring (which requires a view to render javascript - see the shared/_Layout.cshtml  for an example)
         [HttpGetAttribute]
+        [Obsolete]
         public string GetBrowserTimingFooter()
         {
             var footer = NewRelic.Api.Agent.NewRelic.GetBrowserTimingFooter();
