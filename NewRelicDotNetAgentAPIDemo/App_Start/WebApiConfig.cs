@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace NewRelicDotNetAgentAPIDemo
 {
@@ -10,13 +7,13 @@ namespace NewRelicDotNetAgentAPIDemo
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "NewRelicAPI",
-                routeTemplate: "api/{controller}/{action}"
+                "NewRelicAPI",
+                "api/{controller}/{action}"
             );
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                "DefaultApi",
+                "api/{controller}/{id}",
+                new { id = RouteParameter.Optional }
             );
 
         }

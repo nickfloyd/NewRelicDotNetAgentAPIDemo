@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
 
@@ -27,8 +24,8 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         public string RecordMetric()
         {
             // Converting DateTime.Now calls to Stopwatch which is more appropriate for measuring performance times
-            var timer = Stopwatch.StartNew();         
-            this.DelayTransaction(5000);
+            var timer = Stopwatch.StartNew();
+            DelayTransaction(5000);
             timer.Stop();
             NewRelic.Api.Agent.NewRelic.RecordMetric("Custom/DEMO_Record_Metric", timer.Elapsed.Milliseconds);
 
@@ -48,7 +45,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         {
             // Converting DateTime.Now calls to Stopwatch which is more appropriate for measuring performance times
             var timer = Stopwatch.StartNew();
-            this.DelayTransaction(5000);
+            DelayTransaction(5000);
             timer.Stop();
 
             NewRelic.Api.Agent.NewRelic.RecordResponseTimeMetric("Custom/DEMO_Record_Response_Time_Metric", timer.Elapsed.Milliseconds);
@@ -67,9 +64,9 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         public string IncrementCounter()
         {
             NewRelic.Api.Agent.NewRelic.SetTransactionName("Custom", "IncrementCounter");
-            this.DelayTransaction(5000);
-            
-            for (int i = 0; i < 10; i++)
+            DelayTransaction(5000);
+
+            for (var i = 0; i < 10; i++)
             {
                 NewRelic.Api.Agent.NewRelic.IncrementCounter("IncrementCounter");
             }
@@ -92,8 +89,8 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         {
             try
             {
-                var ImNotABool = "43";
-                bool.Parse(ImNotABool);
+                const string imNotABool = "43";
+                bool.Parse(imNotABool);
             }
             catch (Exception ex)
             {
@@ -119,12 +116,12 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         {
             try
             {
-                var ImNotABool = "43";
-                bool.Parse(ImNotABool);
+                const string imNotABool = "43";
+                bool.Parse(imNotABool);
             }
             catch (Exception ex)
             {
-                var quotes = new Dictionary<string,string>();
+                var quotes = new Dictionary<string, string>();
                 quotes.Add("1", "They had a large chunk of the garbage file? How much do they know?");
                 quotes.Add("2", "I'll hack the Gibson.");
                 quotes.Add("3", "Zero Cool? Crashed fifteen hundred and seven systems in one day?");
@@ -148,9 +145,9 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string AddCustomParameter()
         {
-            this.DelayTransaction(5000);
-            
-            NewRelic.Api.Agent.NewRelic.AddCustomParameter("Custom/DEMO_PARAMETER_ORDER_NUMBER","123456");
+            DelayTransaction(5000);
+
+            NewRelic.Api.Agent.NewRelic.AddCustomParameter("Custom/DEMO_PARAMETER_ORDER_NUMBER", "123456");
 
             return "AddCustomParameter";
         }
@@ -166,7 +163,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string SetTransactionName()
         {
-            this.DelayTransaction(5000);
+            DelayTransaction(5000);
 
             NewRelic.Api.Agent.NewRelic.SetTransactionName("Custom", "DEMO_TRANSACTION_NAME");
 
@@ -180,7 +177,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string IgnoreTransaction()
         {
-            this.DelayTransaction(5000);
+            DelayTransaction(5000);
 
             NewRelic.Api.Agent.NewRelic.IgnoreTransaction();
 
@@ -194,7 +191,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string IgnoreApdex()
         {
-            this.DelayTransaction(20000);
+            DelayTransaction(20000);
 
             NewRelic.Api.Agent.NewRelic.IgnoreApdex();
 
@@ -215,9 +212,9 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         [HttpGetAttribute]
         public string SetUserParameters()
         {
-            this.DelayTransaction(5000);
+            DelayTransaction(5000);
 
-            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick","SomeUserHandle","NewRelicEcomSite");
+            NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick", "SomeUserHandle", "NewRelicEcomSite");
 
             return "SetUserParameters";
         }
@@ -257,7 +254,8 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             return "DisableBrowserMonitoring";
         }
 
-        private void DelayTransaction(Int16 mills) {
+        private void DelayTransaction(Int16 mills)
+        {
             Thread.Sleep(mills);
         }
 
