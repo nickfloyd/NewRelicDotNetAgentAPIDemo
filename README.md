@@ -12,7 +12,7 @@ Requirements
 *  Visual Studio 2012
 *  .net 4.5
 *  ASP .net MVC 4
-*  Nuget 2.x
+*  Nuget 2.7
 
 Note: If you are using Visual Studio 2010 you can do the following after cloning:  
 git checkout v2010
@@ -26,5 +26,3 @@ Setup
 4. If local the resulting endpoint will be: http://localhost/NewRelicDotNetAgentAPIDemo
 
 Note:  Package restore is enabled on this solution, so when you build the project will attempt to download missing packages.
-To enable package restore:
-Tools >> Options >> Package Manager >> General >> Check "Allow Nuget to download missing packages during build"
