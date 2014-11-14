@@ -26,3 +26,5 @@ Setup
 4. If local the resulting endpoint will be: http://localhost/NewRelicDotNetAgentAPIDemo
 
 Note:  Package restore is enabled on this solution, so when you build the project will attempt to download missing packages.
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
