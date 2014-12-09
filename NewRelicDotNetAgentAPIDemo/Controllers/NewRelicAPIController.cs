@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Web.Http;
+using System.Diagnostics;
 
 namespace NewRelicDotNetAgentAPIDemo.Controllers
 {
     public class NewRelicAPIController : ApiController
     {
-
         /// <summary>
         /// RecordMetric(System.String,System.Single) Method
         ///Record a metric value for the given name.
@@ -258,6 +257,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
         {
             Thread.Sleep(mills);
         }
+
 
     }
 }

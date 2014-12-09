@@ -1,4 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 
 namespace NewRelicDotNetAgentAPIDemo.Controllers
@@ -19,7 +23,7 @@ namespace NewRelicDotNetAgentAPIDemo.Controllers
             Thread.Sleep(5000);
 
             NewRelic.Api.Agent.NewRelic.SetUserParameters("Nick", "SomeUserHandle", "NewRelicEcomSite");
-            
+
             return View();
         }
 
