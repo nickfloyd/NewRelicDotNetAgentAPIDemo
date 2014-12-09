@@ -11,7 +11,7 @@ Requirements
 
 *  Visual Studio 2012
 *  .net 4.5
-*  ASP .net MVC 4
+*  ASP .net MVC 5
 *  Nuget 2.7
 
 Note: If you are using Visual Studio 2010 you can do the following after cloning:  
