@@ -9,13 +9,17 @@ The New Relic .net API docs are available [here](https://newrelic.com/docs/dotne
 Requirements
 ----------------
 
-*  Visual Studio 2012
+*  Visual Studio 2015
 *  .net 4.5
 *  ASP .net MVC 5
 *  Nuget 2.7
 
-Note: If you are using Visual Studio 2010 you can do the following after cloning:  
+Note: If you are using Visual Studio 2010 or 2013 you can do the following after cloning:  
 git checkout v2010
+
+or 
+
+git checkout v2013
 
 Setup
 ----------------
