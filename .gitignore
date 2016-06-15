@@ -12,6 +12,7 @@
 *.vspscc
 *.vsmdi
 *.jmconfig
+*.vs/
 
 #tests 
 TestResults
